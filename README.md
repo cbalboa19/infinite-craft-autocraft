@@ -4,7 +4,17 @@ A single-file browser script that plays [Infinite Craft](https://neal.fun/infini
 
 It runs inside the game page, uses the game's own engine (so everything lands in your normal save), and learns as it goes which combinations are worth trying.
 
-## Quick start
+## Install
+
+### Option A: userscript (recommended)
+
+1. Install a userscript manager: [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/).
+2. Open **[autocraft.user.js](https://github.com/cbalboa19/infinite-craft-autocraft/raw/main/autocraft.user.js)**. Your manager will offer to install it.
+3. Open <https://neal.fun/infinite-craft/>. The panel appears **paused**. Press **▶ Resume** to start crafting.
+
+It loads every time you open the game and updates itself when a new version is released.
+
+### Option B: paste into the console
 
 1. Open <https://neal.fun/infinite-craft/>.
 2. Open the browser console: **F12** (or **Ctrl+Shift+J** / **Cmd+Option+J**) → **Console**.
@@ -111,6 +121,16 @@ It sends nothing anywhere. The only network requests are the game's own crafting
 - The hit rate can never reach 100%, and it falls as your collection grows: most combinations of common elements are already known.
 - The model's advantage is modest at first and improves over a few hundred combinations.
 - It relies on the game's internals (`window.IC` and the main Vue component). If neal.fun changes them, the script may need updating. It falls back to `IC.craft` when it cannot find the component.
+
+## Development
+
+[`autocraft.js`](autocraft.js) is the only source file. The userscript is generated from it:
+
+```sh
+node build-userscript.mjs
+```
+
+The build reads `VERSION` from `autocraft.js`, adds the userscript header, and makes the userscript wait for the game to load and open paused. Bump `VERSION` for every release so userscript managers pick up the update.
 
 ## Disclaimer
 

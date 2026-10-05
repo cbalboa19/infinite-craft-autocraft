@@ -48,7 +48,8 @@
     return;
   }
   const prev = window.autoCraft;
-  const wasRunning = prev && prev.state ? prev.state.running : true;
+  // The userscript build sets autoCraftStartPaused so opening the game never starts crafting by surprise.
+  const wasRunning = prev && prev.state ? prev.state.running : !window.autoCraftStartPaused;
   if (prev && prev.destroy) prev.destroy();
 
   const VERSION = 'v7';
