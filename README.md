@@ -4,6 +4,23 @@ A single-file browser script that plays [Infinite Craft](https://neal.fun/infini
 
 It runs inside the game page, uses the game's own engine (so everything lands in your normal save), and learns as it goes which combinations are worth trying.
 
+<p align="center">
+  <img src="docs/panel.png" alt="The Auto-Craft panel: live stats, speed slider, goal selector, search box, model calibration, per-strategy hit rates and a log of new elements" width="411">
+</p>
+
+## Results
+
+From a real save with **7,662 elements**, where most easy combinations are long gone:
+
+| | |
+| --- | --- |
+| Combinations tried | 9,513 |
+| New elements | 2,280 (24%) |
+| 🏆 First discoveries | 440 (4.6%) |
+| Model prediction vs. actual hit rate | 24% vs. 23% |
+
+In a fresh save the hit rate is higher: about 40% in testing.
+
 ## Install
 
 ### Option A: userscript (recommended)
@@ -75,6 +92,8 @@ This is a heuristic. The game gives no way to know a result before asking for it
 - **Keeps going in a background tab.** Its timers run in a Web Worker, because Chrome slows ordinary timers in hidden tabs to once a minute.
 
 ### Panel
+
+![Auto-Craft running next to the game](docs/screenshot.png)
 
 - Live stats: new elements, 🏆 first discoveries, combinations, hit rate, combos per minute and active time.
 - Chart of new elements per minute over the last 30 minutes, with 🏆 in gold.
